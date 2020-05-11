@@ -1,7 +1,9 @@
-package com.yz.appdemo;
+package com.yz.appdemo.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.yz.appdemo.R;
 
 import butterknife.ButterKnife;
 
