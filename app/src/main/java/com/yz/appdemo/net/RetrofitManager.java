@@ -3,7 +3,7 @@ package com.yz.appdemo.net;
 import android.text.TextUtils;
 
 import com.yz.appdemo.common.Constant;
-import com.yz.appdemo.util.Logger;
+import com.yz.appdemo.util.log.Logger;
 
 import java.util.concurrent.TimeUnit;
 

@@ -1,4 +1,4 @@
-package com.yz.appdemo.util;
+package com.yz.appdemo.util.log;
 
 import android.content.ClipData;
 import android.content.ComponentName;
