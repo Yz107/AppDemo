@@ -3,7 +3,8 @@ package com.yz.appdemo.app;
 import android.Manifest;
 import android.app.Application;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
+
+import androidx.core.app.ActivityCompat;
 
 import com.yz.appdemo.common.Constant;
 import com.yz.appdemo.util.log.CrashHandler;

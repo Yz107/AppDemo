@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
     <Button
@@ -11,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="RecyclerView"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/progress_dialog_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ProgressDialog"
         android:gravity="center"/>
 
 </LinearLayout>

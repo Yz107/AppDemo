@@ -1,11 +1,10 @@
 package com.yz.appdemo.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajguan.library.EasyRefreshLayout;
 import com.ajguan.library.LoadModel;
@@ -35,6 +34,7 @@ public class RecyclerviewActivity extends AppCompatActivity {
     private void init() {
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecyclerviewAdapter();
+        adapter.onAttachedToRecyclerView(recyclerview);
         //上拉加载
         adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
@@ -49,7 +49,7 @@ public class RecyclerviewActivity extends AppCompatActivity {
 
             }
         }, recyclerview);
-        adapter.setEmptyView(R.layout.empty_view, recyclerview);
+        adapter.setEmptyView(R.layout.empty_view);
         recyclerview.setAdapter(adapter);
         //下拉刷新
         refreshLayout.setLoadMoreModel(LoadModel.NONE);
