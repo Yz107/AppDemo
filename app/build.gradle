@@ -46,4 +46,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     //qmui
     implementation 'com.qmuiteam:qmui:2.0.0-alpha08'
+
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
+
 }
