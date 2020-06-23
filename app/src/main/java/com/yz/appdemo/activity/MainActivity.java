@@ -28,11 +28,14 @@ public class MainActivity extends AppCompatActivity {
                 .apply();
     }
 
-    @OnClick({R.id.recyclerview_demo, R.id.progress_dialog_demo, R.id.test, R.id.test2})
+    @OnClick({R.id.recyclerview_demo, R.id.progress_dialog_demo, R.id.test, R.id.test2, R.id.select_picture})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.recyclerview_demo:
                 startActivity(new Intent(MainActivity.this, RecyclerviewActivity.class));
+                break;
+            case R.id.select_picture:
+                startActivity(new Intent(MainActivity.this, SelectPictureActivity.class));
                 break;
             case R.id.test:
                 Toast success = Toasty.success(this, "Success!", Toast.LENGTH_SHORT, true);
