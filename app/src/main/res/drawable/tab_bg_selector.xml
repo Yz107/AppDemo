@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" >
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/colorAccent"/>
+            <size android:height="3dp" android:width="40dp"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/transparent"/>
+            <size android:height="3dp" android:width="40dp"/>
+        </shape>
+    </item>
+</selector>
+    <!--使用drawableBottom下划线可控制长度-->
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true">
         <layer-list>
             <item
@@ -18,7 +36,7 @@
     <item>
         <color android:color="@android:color/transparent" />
     </item>
-</selector>
+</selector>-->
 
 <!--
 <?xml version="1.0" encoding="utf-8"?>

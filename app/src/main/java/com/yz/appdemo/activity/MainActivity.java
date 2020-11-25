@@ -1,69 +1,84 @@
 package com.yz.appdemo.activity;
 
-import android.content.Intent;
+import android.Manifest;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.Toast;
+import android.widget.FrameLayout;
+import android.widget.RadioGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 
-import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.yz.appdemo.R;
+import com.yz.appdemo.fragment.SettingFragment;
+import com.yz.appdemo.fragment.UIFragment;
+import com.yz.appdemo.util.PermissionUtil;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import es.dmoral.toasty.Toasty;
+import me.yokeyword.fragmentation.SupportActivity;
+import me.yokeyword.fragmentation.SupportFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends SupportActivity {
+    //应用所需权限
+    String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION};
 
+    @BindView(R.id.fragment_container)
+    FrameLayout container;
+    @BindView(R.id.navigation)
+    RadioGroup mNavigation;
+
+    //当前显示的fragment
+    private SupportFragment mShowFragment;
+    private SupportFragment uiFragment;
+    private SupportFragment settingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Toasty.Config.getInstance()
-                .allowQueue(false)
-                .apply();
+        PermissionUtil.requestPermissions(this, permissions);
+        initView();
     }
 
-    @OnClick({R.id.recyclerview_demo, R.id.progress_dialog_demo, R.id.test, R.id.test2, R.id.select_picture})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.recyclerview_demo:
-                startActivity(new Intent(MainActivity.this, RecyclerviewActivity.class));
-                break;
-            case R.id.select_picture:
-                startActivity(new Intent(MainActivity.this, SelectPictureActivity.class));
-                break;
-            case R.id.test:
-                Toast success = Toasty.success(this, "Success!", Toast.LENGTH_SHORT, true);
-                success.setGravity(Gravity.CENTER, 0, 0);
-                success.show();
-                break;
-            case R.id.test2:
-                Toasty.error(this, "Error!", Toast.LENGTH_SHORT, true).show();
-                break;
-            case R.id.progress_dialog_demo:
-                QMUITipDialog loading = new QMUITipDialog.Builder(this)
-                        .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
-                        .setTipWord("请稍候...")
-                        .create(true, R.style.QMUI_Dialog);
-//            WindowManager.LayoutParams layoutParams = loading.getWindow().getAttributes();
-//            layoutParams.dimAmount = 0.2f;//背景遮罩
-//            loading.getWindow().setAttributes(layoutParams);
-                loading.show();
-                view.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        loading.dismiss();
-                        Toast success = Toasty.error(MainActivity.this, "Error!", Toast.LENGTH_SHORT, true);
-                        success.setGravity(Gravity.CENTER, 0, 0);
-                        success.show();
-                    }
-                }, 2000);
-                break;
-        }
+
+    private void initView() {
+        uiFragment = new UIFragment();
+        settingFragment = new SettingFragment();
+        loadMultipleRootFragment(R.id.fragment_container, 0,
+                uiFragment, settingFragment);
+        mShowFragment = uiFragment;
+        mNavigation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.monitor:
+                        show(uiFragment);
+                        break;
+                    case R.id.communication:
+                        show(settingFragment);
+                        break;
+                    case R.id.alarm:
+                        show(uiFragment);
+                        break;
+                    case R.id.settings:
+                        show(settingFragment);
+                        break;
+                }
+            }
+        });
     }
+
+
+    private void show(SupportFragment showFragment) {
+        showHideFragment(showFragment, mShowFragment);
+        mShowFragment = showFragment;
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+    }
+
+
 }

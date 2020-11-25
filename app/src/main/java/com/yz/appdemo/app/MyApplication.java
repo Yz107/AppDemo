@@ -13,6 +13,8 @@ import com.yz.appdemo.util.log.Logger;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import es.dmoral.toasty.Toasty;
+
 public class MyApplication extends Application {
     private static MyApplication mApplication;
     public static final Executor EXECUTOR = Executors.newCachedThreadPool();
@@ -22,6 +24,13 @@ public class MyApplication extends Application {
         super.onCreate();
         mApplication = this;
         initCrash();
+        init();
+    }
+
+    private void init() {
+        Toasty.Config.getInstance()
+                .allowQueue(false)
+                .apply();
     }
 
     private void initCrash() {

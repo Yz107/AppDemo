@@ -15,7 +15,7 @@ public class PermissionUtil {
     public static void requestPermissions(Activity activity, String... permissions) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             for (int i = 0; i < permissions.length; i++) {
-                if (!(ActivityCompat.checkSelfPermission(activity, permissions[i]) == PackageManager.PERMISSION_GRANTED)) {
+                if (ActivityCompat.checkSelfPermission(activity, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(activity, permissions, PermissionUtil.REQUEST_PERMISSION_CODE);
                     break;
                 }

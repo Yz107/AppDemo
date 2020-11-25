@@ -1,44 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/recyclerview_demo"
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        style="@style/Button.Shadow"
-        android:background="@drawable/shape_btn_login"
-        android:text="RecyclerView"
-        android:gravity="center"/>
-    <Button
-        android:id="@+id/progress_dialog_demo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ProgressDialog"
-        android:gravity="center"/>
-    <Button
-        android:id="@+id/select_picture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SelectPicture"
-        android:gravity="center"/>
-    <Button
-        android:id="@+id/test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Test"
-        android:gravity="center"/>
-    <Button
-        android:id="@+id/test2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Test2"
-        android:gravity="center"/>
+        android:layout_height="0dp"/>
 
-</LinearLayout>
+    <RadioGroup
+        android:id="@+id/navigation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/monitor"
+            android:checked="true"
+            android:text="测试一"
+            android:gravity="center"
+            android:button="@null"
+            android:textColor="@drawable/tab_color_selector"
+            android:drawableTop="@drawable/tab_map"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/communication"
+            android:text="联系人"
+            android:gravity="center"
+            android:button="@null"
+            android:textColor="@drawable/tab_color_selector"
+            android:drawableTop="@drawable/tab_contact"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:text="告警"
+            android:id="@+id/alarm"
+            android:gravity="center"
+            android:button="@null"
+            android:textColor="@drawable/tab_color_selector"
+            android:drawableTop="@drawable/tab_alarm"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/settings"
+            android:text="设置"
+            android:gravity="center"
+            android:textColor="@drawable/tab_color_selector"
+            android:button="@null"
+            android:drawableTop="@drawable/tab_setting"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
