@@ -6,9 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ajguan.library.EasyRefreshLayout;
-import com.ajguan.library.LoadModel;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yz.appdemo.R;
 import com.yz.appdemo.adapter.RecyclerviewAdapter;
 
@@ -17,10 +18,10 @@ import butterknife.ButterKnife;
 
 public class RecyclerviewActivity extends AppCompatActivity {
 
-    @BindView(R.id.recyclerview)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerview;
-    @BindView(R.id.refresh_layout)
-    EasyRefreshLayout refreshLayout;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
     private RecyclerviewAdapter adapter;
 
     @Override
@@ -51,21 +52,15 @@ public class RecyclerviewActivity extends AppCompatActivity {
         }, recyclerview);
         adapter.setEmptyView(R.layout.empty_view);
         recyclerview.setAdapter(adapter);
-        //下拉刷新
-        refreshLayout.setLoadMoreModel(LoadModel.NONE);
-        refreshLayout.addEasyEvent(new EasyRefreshLayout.EasyEvent() {
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
-            public void onLoadMore() {
-            }
-
-            @Override
-            public void onRefreshing() {
+            public void onRefresh(RefreshLayout refreshlayout) {
                 recyclerview.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         adapter.setNewData(null);
                         adapter.addTestData();
-                        refreshLayout.refreshComplete();
+                        refreshLayout.finishRefresh(true);
                     }
                 }, 1000);
             }
