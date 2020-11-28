@@ -58,7 +58,7 @@ import javax.xml.transform.stream.StreamSource;
 
 
 public final class Logger {
-    private final static String TAG = "AppDemo";
+    public final static String TAG = "AppDemo";
 
     public static final int V = Log.VERBOSE;
     public static final int D = Log.DEBUG;

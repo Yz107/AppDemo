@@ -10,35 +10,39 @@
     <Button
         android:id="@+id/recyclerview_demo"
         android:layout_width="match_parent"
+        style="@style/Button.Shadow"
+        android:text="RecyclerView"/>
+    <Button
+        android:id="@+id/viewpager2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         style="@style/Button.Shadow"
         android:background="@drawable/shape_btn_login"
-        android:text="RecyclerView"
+        android:text="ViewPager2"
         android:gravity="center"/>
     <Button
         android:id="@+id/progress_dialog_demo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="ProgressDialog"
-        android:gravity="center"/>
+        style="@style/Button.Shadow"        />
     <Button
         android:id="@+id/select_picture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SelectPicture"
-        android:gravity="center"/>
+        style="@style/Button.Shadow"   />
     <Button
         android:id="@+id/test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Test"
-        android:gravity="center"/>
+        style="@style/Button.Shadow"   />
     <Button
         android:id="@+id/test2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Test2"
-        android:gravity="center"/>
+        android:layout_margin="10dp"
+        style="@style/Button.Shadow"   />
 
 </LinearLayout>

@@ -12,6 +12,11 @@
 
     <!--解决使用了QMUI.Compat样式后按钮没有阴影效果的问题，在Button里设置此style-->
     <style name="Button.Shadow" parent="@style/Widget.AppCompat.Button">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/shape_btn_login</item>
     </style>
 
 </resources>

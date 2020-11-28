@@ -9,11 +9,12 @@ import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.yz.appdemo.R;
 import com.yz.appdemo.activity.RecyclerviewActivity;
 import com.yz.appdemo.activity.SelectPictureActivity;
+import com.yz.appdemo.activity.ViewPager2Activity;
 
 import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 
-public class UIFragment extends BaseFragment{
+public class UIFragment extends BaseFragment {
     @Override
     public int getLayoutId() {
         return R.layout.fragment_ui;
@@ -25,11 +26,15 @@ public class UIFragment extends BaseFragment{
     }
 
 
-    @OnClick({R.id.recyclerview_demo, R.id.progress_dialog_demo, R.id.test, R.id.test2, R.id.select_picture})
+    @OnClick({R.id.recyclerview_demo, R.id.progress_dialog_demo, R.id.test, R.id.test2, R.id.select_picture,
+            R.id.viewpager2})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.recyclerview_demo:
                 startActivity(new Intent(getActivity(), RecyclerviewActivity.class));
+                break;
+            case R.id.viewpager2:
+                startActivity(new Intent(getActivity(), ViewPager2Activity.class));
                 break;
             case R.id.select_picture:
                 startActivity(new Intent(getActivity(), SelectPictureActivity.class));
