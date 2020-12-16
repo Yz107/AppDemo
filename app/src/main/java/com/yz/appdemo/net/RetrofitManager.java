@@ -5,7 +5,13 @@ import android.text.TextUtils;
 import com.yz.appdemo.common.Constant;
 import com.yz.appdemo.util.log.Logger;
 
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -44,6 +50,8 @@ public class RetrofitManager {
                     .connectTimeout(HTTP_CONNECT_TIMEOUT, TimeUnit.SECONDS)
                     .readTimeout(HTTP_READ_TIMEOUT, TimeUnit.SECONDS)
                     .writeTimeout(HTTP_WRITE_TIMEOUT, TimeUnit.SECONDS)
+                    .sslSocketFactory(getSSLContext().getSocketFactory(), get509TM())
+                    .hostnameVerifier(getHostnameVerifier())
                     .addInterceptor(loggingInterceptor)
                     /*.addInterceptor(new Interceptor() {
                         @Override
@@ -107,5 +115,38 @@ public class RetrofitManager {
         }
 
         public abstract void onResponseSuccess(T result);
+    }
+
+    public static SSLContext getSSLContext() {
+        SSLContext sslContext = null;
+        try {
+            sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new X509TrustManager[]{get509TM()}, new SecureRandom());
+        } catch (Exception e) {
+        }
+        return sslContext;
+    }
+
+    public static X509TrustManager get509TM() {
+        return new X509TrustManager() {
+            @Override
+            public void checkClientTrusted(X509Certificate[] chain, String authType) {
+
+            }
+
+            @Override
+            public void checkServerTrusted(X509Certificate[] chain, String authType) {
+
+            }
+
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                return new X509Certificate[0];
+            }
+        };
+    }
+
+    public static HostnameVerifier getHostnameVerifier() {
+        return (hostname, session) -> true;
     }
 }
