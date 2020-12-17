@@ -12,10 +12,12 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.yz.appdemo.R;
+import com.yz.appdemo.adapter.MultiItemAdapter;
 import com.yz.appdemo.adapter.RecyclerviewAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RecyclerviewActivity extends AppCompatActivity {
 
@@ -24,6 +26,7 @@ public class RecyclerviewActivity extends AppCompatActivity {
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     private RecyclerviewAdapter adapter;
+    private MultiItemAdapter multiItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,5 +76,17 @@ public class RecyclerviewActivity extends AppCompatActivity {
             }
         });
 
+        multiItemAdapter = new MultiItemAdapter();
     }
+
+    @OnClick({R.id.expand_list})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.expand_list:
+                multiItemAdapter.bindToRecyclerView(recyclerview);
+                recyclerview.setAdapter(multiItemAdapter);
+                break;
+        }
+    }
+
 }

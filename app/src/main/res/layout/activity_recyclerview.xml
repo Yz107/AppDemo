@@ -8,7 +8,9 @@
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/expand_list"
         app:srlPrimaryColor="@color/colorPrimary"
         app:srlAccentColor="@android:color/white"
         app:srlEnableHeaderTranslationContent="true"
@@ -24,4 +26,11 @@
             tools:listitem="@android:layout/simple_list_item_2"/>
 
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+    <Button
+        android:id="@+id/expand_list"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="折叠列表"
+        style="@style/Button.Shadow"   />
 </androidx.constraintlayout.widget.ConstraintLayout>
