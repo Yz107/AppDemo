@@ -1,6 +1,7 @@
 package com.yz.appdemo.activity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -63,6 +64,12 @@ public class RecyclerviewActivity extends AppCompatActivity {
                         refreshLayout.finishRefresh(true);
                     }
                 }, 1000);
+            }
+        });
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
             }
         });
 

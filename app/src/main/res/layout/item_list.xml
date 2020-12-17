@@ -33,6 +33,7 @@
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="@id/user_name"
         app:layout_constraintTop_toBottomOf="@id/line"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="8dp"
         android:layout_height="wrap_content">
