@@ -1,5 +1,6 @@
 package com.yz.appdemo.net;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -44,18 +45,19 @@ public interface ServiceApi {
     @POST("uploadImgs")
     Call<String> uploadFile(@Part("description") RequestBody description, @Part MultipartBody.Part file);
 
+
     /**
-     * Map<String, RequestBody> map = new HashMap<>();
-     * for (String imgUrl : imgStrs) {
-     * File file = new File(imgUrl);
-     * // create RequestBody instance from file
-     * // RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-     * RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpg"), file);
-     * //注意：file就是与服务器对应的key,后面filename是服务器得到的文件名
-     * map.put("file\"; filename=\"" + file.getName(), requestFile);
-     * }
+     *使用form-data表单上传多个文件，同时携带参数
+     *     --c93a97d6-d8de-459e-86f1-1d8c42b579c8
+     *     Content-Disposition: form-data; name="fileType"
+     *     Content-Length: 5
+     *     ALARM
+     *     --c93a97d6-d8de-459e-86f1-1d8c42b579c8
+     *     Content-Disposition: form-data; name="files"; filename="1608540169250380.jpeg"
+     *     Content-Type: multipart/form-data
+     *     Content-Length: 39465
      */
     @Multipart
     @POST("/cad/file/upload")
-    Call<String> uploadFiles(@PartMap Map<String, okhttp3.RequestBody> files);
+    Call<String> uploadFile(@Part List<MultipartBody.Part> partLis);
 }
