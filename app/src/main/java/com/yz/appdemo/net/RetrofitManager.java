@@ -27,9 +27,9 @@ public class RetrofitManager {
     private static String TAG = "RetrofitManager";
     private static Retrofit mRetrofit;
     private static OkHttpClient okHttpClient;
-    private static final long HTTP_CONNECT_TIMEOUT = 10;
-    private static final long HTTP_READ_TIMEOUT = 30;
-    private static final long HTTP_WRITE_TIMEOUT = 30;
+    public static final long HTTP_CONNECT_TIMEOUT = 10;
+    public static final long HTTP_READ_TIMEOUT = 30;
+    public static final long HTTP_WRITE_TIMEOUT = 30;
     public static String TOKEN = "token";
 
     private static ServiceApi API;
