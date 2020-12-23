@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.yz.appdemo.R;
+import com.yz.appdemo.activity.AnimationActivity;
 import com.yz.appdemo.activity.RecyclerviewActivity;
 import com.yz.appdemo.activity.SelectPictureActivity;
 import com.yz.appdemo.activity.ViewPager2Activity;
@@ -26,7 +27,7 @@ public class UIFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.recyclerview_demo, R.id.progress_dialog_demo, R.id.test, R.id.test2, R.id.select_picture,
+    @OnClick({R.id.recyclerview_demo, R.id.progress_dialog_demo, R.id.anim, R.id.test2, R.id.select_picture,
             R.id.viewpager2})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -39,10 +40,8 @@ public class UIFragment extends BaseFragment {
             case R.id.select_picture:
                 startActivity(new Intent(getActivity(), SelectPictureActivity.class));
                 break;
-            case R.id.test:
-                Toast success = Toasty.success(getActivity(), "Success!", Toast.LENGTH_SHORT, true);
-                success.setGravity(Gravity.CENTER, 0, 0);
-                success.show();
+            case R.id.anim:
+                startActivity(new Intent(getActivity(), AnimationActivity.class));
                 break;
             case R.id.test2:
                 Toasty.error(getActivity(), "Error!", Toast.LENGTH_SHORT, true).show();
