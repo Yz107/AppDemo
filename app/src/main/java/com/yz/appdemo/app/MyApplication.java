@@ -3,6 +3,7 @@ package com.yz.appdemo.app;
 import android.Manifest;
 import android.app.Application;
 import android.content.pm.PackageManager;
+import android.os.Environment;
 
 import androidx.core.app.ActivityCompat;
 
@@ -31,11 +32,14 @@ public class MyApplication extends Application {
         Toasty.Config.getInstance()
                 .allowQueue(false)
                 .apply();
+        Constant.FILE_ROOT_PATH = getExternalFilesDir(null).getAbsolutePath();
+        Constant.FILE_IMAGE_PATH = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+
     }
 
     private void initCrash() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            CrashHandler.init(Constant.FILE_LOG_PATH, new CrashHandler.OnCrashListener() {
+            CrashHandler.init(getExternalCacheDir() +  "/log", new CrashHandler.OnCrashListener() {
                 @Override
                 public void onCrash(String crashInfo, Throwable e) {
                     Logger.e(crashInfo);

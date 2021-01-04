@@ -106,7 +106,6 @@ public final class Logger {
                 .setGlobalTag(TAG)
                 .setLogHeadSwitch(true)
                 .setLog2FileSwitch(true)
-                .setDir(Constant.FILE_LOG_PATH)
                 .setBorderSwitch(false)
                 .setConsoleFilter(Logger.V)//控制台输出过滤
                 .setFileFilter(Logger.V);//文件输出过滤
