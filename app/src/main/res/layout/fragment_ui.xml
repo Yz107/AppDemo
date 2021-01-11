@@ -44,5 +44,17 @@
         android:text="Test2"
         android:layout_margin="10dp"
         style="@style/Button.Shadow"   />
-
+    <Button
+        android:id="@+id/test3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test3"
+        android:layout_margin="10dp"
+        style="@style/Button.Shadow"   />
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:paddingRight="5dp"/>
 </LinearLayout>

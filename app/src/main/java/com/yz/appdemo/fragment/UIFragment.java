@@ -3,6 +3,9 @@ package com.yz.appdemo.fragment;
 import android.content.Intent;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
@@ -12,10 +15,17 @@ import com.yz.appdemo.activity.RecyclerviewActivity;
 import com.yz.appdemo.activity.SelectPictureActivity;
 import com.yz.appdemo.activity.ViewPager2Activity;
 
+import java.io.File;
+import java.util.ArrayList;
+
+import butterknife.BindView;
 import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 
 public class UIFragment extends BaseFragment {
+    @BindView(R.id.spinner)
+    Spinner spinner;
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_ui;
@@ -23,12 +33,32 @@ public class UIFragment extends BaseFragment {
 
     @Override
     public void init() {
-
+        initSpinner();
     }
 
+    private void initSpinner() {
+        ArrayList<String> areas = new ArrayList<>();
+        areas.add("CNNT00256465500");
+        areas.add("CNNT00256465501");
+        areas.add("CNNT00256465502");
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(spinner.getContext(),
+                R.layout.item_spinner, areas);
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
 
     @OnClick({R.id.recyclerview_demo, R.id.progress_dialog_demo, R.id.anim, R.id.test2, R.id.select_picture,
-            R.id.viewpager2})
+            R.id.viewpager2, R.id.test3})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.recyclerview_demo:

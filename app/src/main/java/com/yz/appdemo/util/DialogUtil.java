@@ -20,6 +20,15 @@ public class DialogUtil {
         return loading;
     }
 
+    public static QMUIDialog confirmDialog(Context context) {
+        QMUIDialog.MessageDialogBuilder messageDialogBuilder = new QMUIDialog.MessageDialogBuilder(context);
+        QMUIDialog qmuiDialog = messageDialogBuilder.setMessage("是否确定删除？")
+                .addAction("确定", (dialog, index) -> {
+                }).addAction("取消", (dialog, index) -> dialog.dismiss()).create();
+        qmuiDialog.show();
+        return qmuiDialog;
+    }
+
 
     public static QMUIDialog showInputDialog(Context context) {
         QMUIDialog.EditTextDialogBuilder builder = new QMUIDialog.EditTextDialogBuilder(context)
