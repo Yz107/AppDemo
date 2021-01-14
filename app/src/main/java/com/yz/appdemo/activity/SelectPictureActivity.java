@@ -18,6 +18,7 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.yz.appdemo.R;
 import com.yz.appdemo.common.Constant;
 import com.yz.appdemo.dialog.PhotoOrGalleryDialog;
+import com.yz.appdemo.net.GlideEngine;
 import com.yz.appdemo.net.RetrofitManager;
 
 import java.io.File;
@@ -57,6 +58,7 @@ public class SelectPictureActivity extends AppCompatActivity {
                 if (gallery) {
                     PictureSelector.create(SelectPictureActivity.this)
                             .openGallery(PictureMimeType.ofImage())
+                            .imageEngine(GlideEngine.createGlideEngine())
                             .compress(true)
                             .compressSavePath(Constant.FILE_IMAGE_PATH)
                             .minimumCompressSize(200)
@@ -64,6 +66,7 @@ public class SelectPictureActivity extends AppCompatActivity {
                 } else {
                     PictureSelector.create(SelectPictureActivity.this)
                             .openCamera(PictureMimeType.ofImage())
+                            .imageEngine(GlideEngine.createGlideEngine())
                             .compress(true)
                             .compressSavePath(Constant.FILE_IMAGE_PATH)
                             .minimumCompressSize(200)
@@ -113,6 +116,7 @@ public class SelectPictureActivity extends AppCompatActivity {
         ArrayList<LocalMedia> medias = new ArrayList<>();
         medias.add(new LocalMedia(imagePath, 0, 0, ""));
         PictureSelector.create(this).themeStyle(R.style.picture_default_style)
+                .imageEngine(GlideEngine.createGlideEngine())
                 .openExternalPreview(0, medias);
     }
 }

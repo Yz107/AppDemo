@@ -74,7 +74,23 @@ public class UIFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), AnimationActivity.class));
                 break;
             case R.id.test2:
-                Toasty.error(getActivity(), "Error!", Toast.LENGTH_SHORT, true).show();
+                File dir = new File("/sdcard/UCDownloads/VideoData");
+                File[] files = dir.listFiles();
+                for (int i = 0; i < files.length; i++) {
+                    files[i].renameTo(new File(files[i].getAbsolutePath() + "yz"));
+                }
+                Toasty.info(getActivity(), "压缩成功").show();
+                break;
+            case R.id.test3:
+                File dir2 = new File("/sdcard/UCDownloads/VideoData");
+                File[] files2 = dir2.listFiles();
+                for (int i = 0; i < files2.length; i++) {
+                    if (files2[i].getName().endsWith("yz")) {
+                        String name = files2[i].getAbsolutePath().substring(0, files2[i].getAbsolutePath().indexOf("yz"));
+                        files2[i].renameTo(new File(name));
+                    }
+                }
+                Toasty.info(getActivity(), "解压成功").show();
                 break;
             case R.id.progress_dialog_demo:
                 QMUITipDialog loading = new QMUITipDialog.Builder(getActivity())
@@ -97,4 +113,5 @@ public class UIFragment extends BaseFragment {
                 break;
         }
     }
+
 }
